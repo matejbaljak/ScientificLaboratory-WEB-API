@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Publication</title>
+    <link rel="stylesheet" href="css/b.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Create Publication</h1>
+        <form id="publicationForm" enctype="multipart/form-data">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="abstract">Abstract:</label>
+            <textarea id="abstract" name="abstract" required></textarea>
+
+            <label for="year">Year:</label>
+            <input type="number" id="year" name="year" required>
+
+            <label for="pages">Pages:</label>
+            <input type="text" id="pages" name="pages" required>
+
+            <label for="issn">ISSN:</label>
+            <input type="text" id="issn" name="issn" required>
+
+            <label for="doi">DOI:</label>
+            <input type="text" id="doi" name="doi">
+
+            <label for="keywords">Keywords (comma-separated):</label>
+            <input type="text" id="keywords" name="keywords">
+
+            <label for="pdfFile">Upload PDF:</label>
+            <input type="file" id="pdfFile" name="pdfFile" accept="application/pdf" required>
+
+            <div id="authorsContainer">
+                <label for="authorName">Author Name:</label>
+                <input type="text" class="authorName" name="authorName[]" required>
+
+            </div>
+            <button type="button" id="addAuthor">Add Another Author</button>
+
+            <button type="submit">Create Publication</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <script src="js/b.js"></script>
+</body>
+</html>

@@ -1,0 +1,269 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Author Publication Graph</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        .container {
+            width: 90%;
+            height: 90vh;
+            margin: auto;
+            overflow: auto;
+            border: 2px solid #ccc;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            margin-top: 25px;
+        }
+
+        svg {
+            width: 200%;
+            height: 200%;
+        }
+
+        .node circle {
+            stroke: #333;
+            stroke-width: 1.5px;
+        }
+
+        .node text {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            fill: #333;
+        }
+
+        .link {
+            fill: none;
+            stroke: #666;
+            stroke-width: 2px;
+        }
+
+        .link-label {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            fill: #000;
+            display: block; /* Always show labels */
+        }
+
+        .highlighted {
+            stroke: orange;
+            stroke-width: 4px;
+        }
+
+        .clicked {
+            stroke: red;
+            stroke-width: 4px;
+        }
+
+        .node-highlight {
+            stroke: orange;
+            stroke-width: 3px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <svg></svg>
+    </div>
+
+    <script>
+        // Function to generate random color
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        async function fetchPublications() {
+            try {
+                const response = await fetch('http://localhost:5108/api/Publications', {
+                    method: 'GET',
+                    headers: {
+                        'Accept': '*/*'
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                console.log("Fetched Data:", data); // Debugging output
+                processPublications(data.$values); // Ensure the data array is passed correctly
+            } catch (error) {
+                console.error('Failed to fetch data:', error);
+            }
+        }
+
+        function processPublications(publications) {
+            const authorsMap = new Map();
+            const nodeMap = new Map();
+
+            publications.forEach(publication => {
+                const authors = publication.authors.$values.flatMap(author => author.name.split(/,|;/).map(name => name.trim()));
+                console.log("Processing publication:", publication.title, authors); // Debugging output
+
+                // Ensure each author is added to the node map
+                authors.forEach(author => {
+                    if (!nodeMap.has(author)) {
+                        nodeMap.set(author, { id: author, color: getRandomColor(), degree: 0 }); // Initialize degree
+                    }
+                });
+
+                // Create links only if there are multiple authors
+                for (let i = 0; i < authors.length; i++) {
+                    for (let j = i + 1; j < authors.length; j++) {
+                        const pair = [authors[i], authors[j]].sort().join('-');
+                        if (!authorsMap.has(pair)) {
+                            authorsMap.set(pair, { count: 1, source: authors[i], target: authors[j] });
+
+                            // Increment degree for both authors
+                            nodeMap.get(authors[i]).degree += 1;
+                            nodeMap.get(authors[j]).degree += 1;
+                        } else {
+                            authorsMap.get(pair).count += 1;
+                        }
+                    }
+                }
+            });
+
+            const nodes = Array.from(nodeMap.values());
+            const links = Array.from(authorsMap.values());
+
+            console.log("Nodes:", nodes); // Debugging output
+            console.log("Links:", links); // Debugging output
+
+            createGraph(nodes, links);
+        }
+
+        function createGraph(nodes, links) {
+            const svg = d3.select("svg"),
+                width = +svg.node().getBoundingClientRect().width,
+                height = +svg.node().getBoundingClientRect().height;
+
+            const zoom = d3.zoom()
+                .scaleExtent([0.5, 2])
+                .on("zoom", (event) => {
+                    g.attr("transform", event.transform);
+                });
+
+            svg.call(zoom);
+
+            const g = svg.append("g");
+
+            const simulation = d3.forceSimulation(nodes)
+                .force("link", d3.forceLink(links).id(d => d.id).distance(300)) // Increased distance between nodes
+                .force("charge", d3.forceManyBody().strength(-400)) // Increased repulsion for greater spacing
+                .force("center", d3.forceCenter(width / 2, height / 2))
+                .force("collide", d3.forceCollide().radius(50)); // Avoid overlap
+
+            // Add links
+            const link = g.append("g")
+                .attr("class", "links")
+                .selectAll("line")
+                .data(links)
+                .enter().append("line")
+                .attr("class", "link")
+                .attr("stroke-width", d => Math.sqrt(d.count))
+                .on("mouseover", function (event, d) {
+                    d3.select(this).attr("stroke", "orange");
+                })
+                .on("mouseout", function (event, d) {
+                    d3.select(this).attr("stroke", d3.select(this).classed("clicked") ? "red" : "#666");
+                })
+                .on("click", function (event, d) {
+                    const isClicked = d3.select(this).classed("clicked");
+                    d3.select(this).classed("clicked", !isClicked).attr("stroke", isClicked ? "#666" : "red");
+                });
+
+            // Add link labels
+            const linkLabel = g.append("g")
+                .attr("class", "link-labels")
+                .selectAll("text")
+                .data(links)
+                .enter().append("text")
+                .attr("class", "link-label")
+                .attr("dy", ".35em")
+                .attr("id", d => `label-${d.source.id}-${d.target.id}`)
+                .attr("x", d => (d.source.x + d.target.x) / 2)
+                .attr("y", d => (d.source.y + d.target.y) / 2)
+                .text(d => d.count);
+
+            // Add nodes
+            const node = g.append("g")
+                .attr("class", "nodes")
+                .selectAll("g")
+                .data(nodes)
+                .enter().append("g")
+                .attr("class", "node")
+                .on("mouseover", function (event, d) {
+                    d3.select(this).select("circle").classed("node-highlight", true);
+                    link.filter(l => l.source.id === d.id || l.target.id === d.id)
+                        .classed("highlighted", true);
+                })
+                .on("mouseout", function (event, d) {
+                    d3.select(this).select("circle").classed("node-highlight", false);
+                    link.filter(l => l.source.id === d.id || l.target.id === d.id)
+                        .classed("highlighted", false);
+                });
+
+            // Set node size based on degree
+            node.append("circle")
+                .attr("r", d => Math.sqrt(d.degree) * 5 + 5) // Set radius based on degree
+                .attr("fill", d => d.color)
+                .call(d3.drag()
+                    .on("start", dragstarted)
+                    .on("drag", dragged)
+                    .on("end", dragended));
+
+            node.append("text")
+                .attr("x", 15)
+                .attr("y", 5)
+                .text(d => d.id);
+
+            simulation.nodes(nodes).on("tick", ticked);
+            simulation.force("link").links(links);
+
+            function ticked() {
+                link
+                    .attr("x1", d => d.source.x)
+                    .attr("y1", d => d.source.y)
+                    .attr("x2", d => d.target.x)
+                    .attr("y2", d => d.target.y);
+
+                linkLabel
+                    .attr("x", d => (d.source.x + d.target.x) / 2)
+                    .attr("y", d => (d.source.y + d.target.y) / 2);
+
+                node
+                    .attr("transform", d => `translate(${d.x},${d.y})`);
+            }
+
+            function dragstarted(event, d) {
+                if (!event.active) simulation.alphaTarget(0.3).restart();
+                d.fx = d.x;
+                d.fy = d.y;
+            }
+
+            function dragged(event, d) {
+                d.fx = event.x;
+                d.fy = event.y;
+            }
+
+            function dragended(event, d) {
+                if (!event.active) simulation.alphaTarget(0);
+                d.fx = null;
+                d.fy = null;
+            }
+        }
+
+        fetchPublications();
+    </script>
+
+</body>
+</html>

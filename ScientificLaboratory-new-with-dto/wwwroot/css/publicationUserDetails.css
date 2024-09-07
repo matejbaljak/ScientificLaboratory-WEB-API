@@ -1,0 +1,90 @@
+﻿.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    font-size: 18px; /* Increased base font size */
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    font-size: 28px; /* Increased heading font size */
+}
+
+#publicationDetails {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    line-height: 1.8;
+}
+
+    #publicationDetails h2 {
+        margin-top: 0;
+        color: #007BFF;
+        font-size: 24px; /* Increased section heading font size */
+    }
+
+    #publicationDetails h3 {
+        font-size: 22px; /* Increased title font size */
+        color: #555;
+        margin-bottom: 20px; /* Added margin to create space below title */
+    }
+
+#abstract {
+    margin-bottom: 20px;
+    font-size: 20px; /* Increased font size for the abstract */
+    line-height: 1.8; /* Increased line height for better readability */
+}
+
+#detailsWrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px; /* Increased space above the details section */
+}
+
+    #detailsWrapper .left,
+    #detailsWrapper .right {
+        flex: 1;
+        margin-right: 20px; /* Increased space between left and right sections */
+    }
+
+    #detailsWrapper .section-title {
+        font-size: 20px; /* Section title font size */
+        margin-bottom: 10px; /* Added margin for spacing */
+        color: #333;
+        font-weight: bold; /* Made section titles bold */
+    }
+
+    #detailsWrapper .right {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+#publicationDetails p {
+    margin: 2px 5px; /* Increased margin to add more space between paragraphs */
+}
+
+#publicationDetails a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: #007BFF;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 18px; /* Slightly larger link text */
+}
+
+    #publicationDetails a:hover {
+        background-color: #0056b3;
+    }
+
+#keywords {
+    margin-top: 30px; /* Increased space above keywords section */
+    font-style: italic;
+    font-size: 18px; /* Slightly larger font size for keywords */
+}

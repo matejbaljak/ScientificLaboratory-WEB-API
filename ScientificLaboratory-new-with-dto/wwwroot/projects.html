@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Management</title>
+    <link rel="stylesheet" href="css/project.css"> <!-- Ensure the path is correct -->
+</head>
+<body>
+    <h1>Project Management</h1>
+
+    <div id="project-form">
+        <h2>Create/Update Project</h2>
+        <form id="projectForm">
+            <input type="hidden" id="projectId">
+            <label for="title">Title:</label>
+            <input type="text" id="title" required>
+            <label for="description">Description:</label>
+            <input type="text" id="description" required>
+            <label for="startMonth">Start Month:</label>
+            <input type="number" id="startMonth" required>
+            <label for="startYear">Start Year:</label>
+            <input type="number" id="startYear" required>
+            <label for="endMonth">End Month:</label>
+            <input type="number" id="endMonth" required>
+            <label for="endYear">End Year:</label>
+            <input type="number" id="endYear" required>
+            <label for="type">Type:</label>
+            <input type="text" id="type" required>
+            <label for="projectLeader">Project Leader:</label>
+            <input type="text" id="projectLeader" required>
+            <label for="researchers">Researchers (comma-separated):</label>
+            <input type="text" id="researchers" required>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <div id="projects-list">
+        <h2>Projects List</h2>
+        <div id="projects"></div>
+    </div>
+
+    <div id="message"></div>
+
+    <script src="js/project.js"></script>
+</body>
+</html>

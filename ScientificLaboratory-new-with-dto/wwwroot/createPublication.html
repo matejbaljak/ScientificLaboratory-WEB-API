@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Publication</title>
+    <link rel="stylesheet" href="css/createPublication.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Create Publication</h1>
+        <form id="publicationForm" enctype="multipart/form-data">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="abstract">Abstract:</label>
+            <textarea id="abstract" name="abstract" required></textarea>
+
+            <label for="year">Year:</label>
+            <input type="number" id="year" name="year" required>
+
+            <label for="pages">Pages:</label>
+            <input type="text" id="pages" name="pages" required>
+
+            <label for="issn">ISSN:</label>
+            <input type="text" id="issn" name="issn" required>
+
+            <label for="doi">DOI:</label>
+            <input type="text" id="doi" name="doi">
+
+            <!-- Keywords Section -->
+            <h3>Keywords:</h3>
+            <div id="keywordsContainer">
+                <div class="keywordEntry">
+                    <input type="text" class="keywordInput" name="keywords[]" placeholder="Enter keyword" required>
+                </div>
+            </div>
+            <button type="button" id="addKeyword">Add Another Keyword</button>
+
+            <label for="pdfFile">Upload PDF:</label>
+            <input type="file" id="pdfFile" name="pdfFile" accept="application/pdf" required>
+
+            <label for="type">Type:</label>
+            <input type="text" id="type" name="type" required>
+
+            <div id="authorsContainer">
+                <label for="authorName">Author:</label>
+                <select class="authorSelect" name="authorName[]" required></select>
+            </div>
+            <button type="button" id="addAuthor">Add Another Author</button>
+            <button type="submit">Create Publication</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const membersApiUrl = 'http://localhost:5108/api/Members'; // Replace with the actual endpoint to get members from the database
+            const token = localStorage.getItem('token');
+            let membersList = []; // Store the list of members globally so we can reuse it
+
+            if (!token) {
+                alert('You are not logged in. Please log in.');
+                window.location.href = 'login.html'; // Redirect to login page if no token
+                return;
+            }
+
+            // Fetch members to populate the dropdown
+            async function fetchMembers() {
+                try {
+                    console.log('Fetching members...');
+                    const response = await fetch(membersApiUrl, {
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                            'accept': 'application/json'
+                        }
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch members');
+                    }
+
+                    const membersData = await response.json();
+                    console.log('Members data received:', membersData); // Log the received data
+                    membersList = membersData.$values; // Store the members data
+                    populateAuthorDropdown(membersList);
+                } catch (error) {
+                    console.error('Error fetching members:', error);
+                    alert('Error fetching authors.');
+                }
+            }
+
+            // Populate the dropdown with members (authors)
+            function populateAuthorDropdown(members) {
+                const authorSelects = document.querySelectorAll('.authorSelect');
+                if (!members || members.length === 0) {
+                    console.error('No members found to populate.');
+                    return;
+                }
+
+                authorSelects.forEach(select => {
+                    select.innerHTML = ''; // Clear any existing options
+
+                    const emptyOption = document.createElement('option');
+                    emptyOption.value = '';
+                    emptyOption.textContent = 'Select Author'; // Placeholder option
+                    select.appendChild(emptyOption);
+
+                    members.forEach(member => {
+                        const option = document.createElement('option');
+                        option.value = member.name; // Assuming 'name' is the field you want to use
+                        option.textContent = member.name;
+                        select.appendChild(option);
+                    });
+
+                    console.log('Dropdown populated with members.');
+                });
+            }
+
+            // Add another author dropdown
+            document.getElementById('addAuthor').addEventListener('click', function () {
+                const authorsContainer = document.getElementById('authorsContainer');
+
+                // Create label and select dropdown for the new author
+                const authorLabel = document.createElement('label');
+                authorLabel.innerText = 'Author:';
+                authorsContainer.appendChild(authorLabel);
+
+                const authorSelect = document.createElement('select');
+                authorSelect.classList.add('authorSelect');
+                authorSelect.name = 'authorName[]';
+                authorSelect.required = true;
+                authorsContainer.appendChild(authorSelect);
+
+                // Populate the new dropdown with the same list of members (using stored membersList)
+                populateNewAuthorDropdown(authorSelect);
+            });
+
+            // This will populate a newly added author dropdown with the existing members
+            function populateNewAuthorDropdown(newSelect) {
+                newSelect.innerHTML = ''; // Clear the dropdown before populating
+
+                const emptyOption = document.createElement('option');
+                emptyOption.value = '';
+                emptyOption.textContent = 'Select Author'; // Placeholder option
+                newSelect.appendChild(emptyOption);
+
+                // Populate from the stored membersList
+                membersList.forEach(member => {
+                    const option = document.createElement('option');
+                    option.value = member.name;
+                    option.textContent = member.name;
+                    newSelect.appendChild(option);
+                });
+            }
+
+            // Add another keyword input field
+            document.getElementById('addKeyword').addEventListener('click', function () {
+                const keywordsContainer = document.getElementById('keywordsContainer');
+
+                const keywordEntry = document.createElement('div');
+                keywordEntry.classList.add('keywordEntry');
+
+                const keywordInput = document.createElement('input');
+                keywordInput.type = 'text';
+                keywordInput.className = 'keywordInput';
+                keywordInput.name = 'keywords[]';
+                keywordInput.placeholder = 'Enter keyword';
+                keywordInput.required = true;
+
+                keywordEntry.appendChild(keywordInput);
+                keywordsContainer.appendChild(keywordEntry);
+            });
+
+            // Handle form submission
+            document.getElementById('publicationForm').addEventListener('submit', async function (e) {
+                e.preventDefault();
+
+                let formData = new FormData();
+                formData.append('title', document.getElementById('title').value);
+                formData.append('abstract', document.getElementById('abstract').value);
+                formData.append('year', document.getElementById('year').value);
+                formData.append('pages', document.getElementById('pages').value);
+                formData.append('issn', document.getElementById('issn').value);
+                formData.append('doi', document.getElementById('doi').value);
+
+                // Collect all keyword inputs
+                const keywords = Array.from(document.getElementsByClassName('keywordInput')).map(input => input.value);
+                formData.append('keywords', JSON.stringify(keywords)); // Add as JSON array
+
+                formData.append('pdfFile', document.getElementById('pdfFile').files[0]);
+                formData.append('type', document.getElementById('type').value);
+
+                // Append selected authors to the form data
+                const authorSelects = document.querySelectorAll('.authorSelect');
+                authorSelects.forEach((select, index) => {
+                    formData.append(`authors[${index}].name`, select.value);
+                });
+
+                try {
+                    const response = await fetch('http://localhost:5108/api/Publications', {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Authorization': `Bearer ${token}` // Include JWT in the header
+                        }
+                    });
+
+                    if (response.ok) {
+                        const result = await response.json();
+                        document.getElementById('result').innerText = 'Publication created successfully!';
+                    } else {
+                        const errorDetails = await response.text();
+                        console.log('Error:', errorDetails);
+                        document.getElementById('result').innerText = 'Error creating publication: ' + errorDetails;
+                    }
+                } catch (error) {
+                    document.getElementById('result').innerText = 'Error: ' + error.message;
+                }
+            });
+
+            // Fetch and populate authors (members) on page load
+            fetchMembers();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+﻿/* Center the Create button */
+#adminActions {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* General button styles */
+.button-container {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px; /* Space between buttons */
+    margin-top: 10px; /* Space between buttons and project details */
+}
+
+.create-button,
+.update-button,
+.delete-button,
+.info-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+/* Create Button Styles */
+.create-button {
+    background-color: #28a745; /* Green color */
+    margin-right: 512px;
+}
+
+    .create-button:hover {
+        background-color: #218838; /* Darker green on hover */
+        transform: scale(1.05); /* Slightly larger on hover */
+    }
+
+/* Update Button Styles */
+.update-button {
+    background-color: #007bff; /* Blue color */
+}
+
+    .update-button:hover {
+        background-color: #0069d9; /* Darker blue on hover */
+        transform: scale(1.05); /* Slightly larger on hover */
+    }
+
+/* Delete Button Styles */
+.delete-button {
+    background-color: #dc3545; /* Red color */
+}
+
+    .delete-button:hover {
+        background-color: #c82333; /* Darker red on hover */
+        transform: scale(1.05); /* Slightly larger on hover */
+    }
+
+/* Info Button Styles */
+.info-button {
+    background-color: #6c757d; /* Gray color */
+}
+
+    .info-button:hover {
+        background-color: #5a6268; /* Darker gray on hover */
+        transform: scale(1.05); /* Slightly larger on hover */
+    }

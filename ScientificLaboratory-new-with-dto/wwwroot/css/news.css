@@ -1,0 +1,247 @@
+﻿/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    line-height: 1.5;
+}
+
+/* Main Header */
+#main-header {
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+h1 {
+    margin-left: 250px;
+    margin-top: 20px;
+}
+
+#create-news-button {
+    margin-left: 250px;
+    margin-bottom: -100px;
+}
+
+/* Main Content */
+main {
+    padding: 20px;
+    margin-top: 20px; /* Ensure there's some space below the header */
+    width: 100%;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* News Container */
+#news-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+/* News Item */
+.news-item {
+    border: 1px solid #ddd;
+    padding: 15px;
+    background-color: #f9f9f9;
+}
+
+.news-title {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.news-meta {
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.news-image img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    vertical-align: middle;
+}
+
+.news-content {
+    font-size: 1.1em;
+    color: #333;
+}
+
+/* Admin Button */
+.admin-button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 1.1em;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+    .admin-button:hover {
+        background-color: #0056b3;
+    }
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 500px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+#submit-button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+    #submit-button:hover {
+        background-color: #218838;
+    }
+
+.news-controls button {
+    background-color: #007bff;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+    .news-controls button.delete {
+        background-color: #dc3545;
+    }
+
+    .news-controls button:hover {
+        background-color: #0056b3;
+    }
+
+    .news-controls button.delete:hover {
+        background-color: #c82333;
+    }
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+    h1 {
+        margin-left: 20px;
+        font-size: 1.8em;
+    }
+
+    #create-news-button {
+        margin-left: 20px;
+        font-size: 1em;
+    }
+
+    main {
+        padding: 10px;
+        width: 100%;
+    }
+
+    .news-title {
+        font-size: 1.2em;
+    }
+
+    .news-content {
+        font-size: 1em;
+    }
+
+    .news-controls button {
+        font-size: 0.8em;
+        padding: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        margin-left: 10px;
+        font-size: 1.5em;
+    }
+
+    #create-news-button {
+        margin-left: 10px;
+        font-size: 0.9em;
+    }
+
+    .news-title {
+        font-size: 1.1em;
+    }
+
+    .news-meta {
+        font-size: 0.8em;
+    }
+
+    .news-content {
+        font-size: 0.9em;
+    }
+
+    .news-controls button {
+        font-size: 0.7em;
+        padding: 4px;
+    }
+
+    .modal-content {
+        width: 90%;
+    }
+}

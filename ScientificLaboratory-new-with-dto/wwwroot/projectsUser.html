@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Management</title>
+    <link rel="stylesheet" href="css/project.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/projectAdminStyles.css">
+
+</head>
+<body>
+    <div id="header"></div>
+
+    <!-- Search Bar -->
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search projects...">
+        <button id="searchButton"><i class="fa fa-search"></i></button>
+    </div>
+
+    <!-- Create Button for Admins -->
+    <div id="adminActions" style="margin-bottom: 20px; text-align: right;">
+        <!-- The create button will be added here dynamically for Admins -->
+    </div>
+
+    <!-- Main Content Area -->
+    <div id="content" class="content">
+        <div id="projects" class="projects"></div>
+    </div>
+
+    <div id="footer"></div>
+
+    <script src="js/loadContent.js"></script>
+    <script src="js/projectsUser.js"></script>
+</body>
+</html>

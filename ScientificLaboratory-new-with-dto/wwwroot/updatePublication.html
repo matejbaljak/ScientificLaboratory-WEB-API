@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Publication</title>
+    <link rel="stylesheet" href="css/updatePublication.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Update Publication</h1>
+        <form id="publicationForm" enctype="multipart/form-data">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="abstract">Abstract:</label>
+            <textarea id="abstract" name="abstract" required></textarea>
+
+            <label for="year">Year:</label>
+            <input type="number" id="year" name="year" required>
+
+            <label for="type">Type:</label>
+            <input type="text" id="type" name="type" required>
+
+            <label for="pages">Pages:</label>
+            <input type="text" id="pages" name="pages" required>
+
+            <label for="issn">ISSN:</label>
+            <input type="text" id="issn" name="issn" required>
+
+            <label for="doi">DOI:</label>
+            <input type="text" id="doi" name="doi">
+
+            <label for="keywords">Keywords:</label>
+            <div id="keywordsContainer">
+                <!-- Keywords will be dynamically loaded here -->
+            </div>
+            <button type="button" id="addKeyword">Add Another Keyword</button>
+
+            <label for="pdfFile">Upload New PDF:</label>
+            <input type="file" id="pdfFile" name="pdfFile" accept="application/pdf">
+
+            <div id="authorsContainer">
+                <!-- Authors will be dynamically loaded here -->
+            </div>
+            <button type="button" id="addAuthor">Add Another Author</button>
+
+            <button type="submit">Update Publication</button>
+        </form>
+        <div id="result"></div>
+
+
+        <script src="js/updatePublication.js"></script>
+</body>
+</html>

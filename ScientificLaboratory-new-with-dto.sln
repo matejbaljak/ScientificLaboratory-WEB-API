@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34902.65
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScientificLaboratory-new-with-dto", "ScientificLaboratory-new-with-dto\ScientificLaboratory-new-with-dto.csproj", "{69805A9B-9AC8-433D-A006-987BB0234DD9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{69805A9B-9AC8-433D-A006-987BB0234DD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69805A9B-9AC8-433D-A006-987BB0234DD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69805A9B-9AC8-433D-A006-987BB0234DD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69805A9B-9AC8-433D-A006-987BB0234DD9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {85D8F8CE-63E0-4498-BD75-9DF10F97E1B0}
+	EndGlobalSection
+EndGlobal

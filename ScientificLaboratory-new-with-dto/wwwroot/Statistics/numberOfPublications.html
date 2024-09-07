@@ -1,0 +1,186 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publication Chart</title>
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <style>
+        h2{
+            margin-top:30px;
+            margin-left:200px;
+        }
+        #myChart {
+            width: 1200px !important;
+            height: 600px !important;
+            background-color:white;
+            margin-left:200px;
+            margin-bottom:30px;
+        }
+    </style>
+
+
+</head>
+<body>
+    <div id="header"></div>
+
+    <h2>Publication Trends Over the Years</h2>
+    <canvas id="myChart" width="400" height="200"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Function to fetch data from backend
+        async function fetchData() {
+            try {
+                const response = await fetch('http://localhost:5108/api/Publications', {
+                    headers: {
+                        'accept': '*/*'
+                    }
+                });
+                const data = await response.json();
+                return data.$values;  // Returning the array of publication objects
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                return [];
+            }
+        }
+
+        // Function to process and prepare data for the chart
+        function prepareChartData(publications) {
+            const years = [];
+            const publicationCountByType = {};
+            const publicationTypes = new Set();
+
+            publications.forEach(item => {
+                const year = item.year;
+                const type = item.type;
+
+                if (!years.includes(year)) {
+                    years.push(year);
+                }
+
+                if (!publicationCountByType[year]) {
+                    publicationCountByType[year] = {
+                        total: 0
+                    };
+                }
+
+                publicationCountByType[year].total += 1;
+                publicationCountByType[year][type] = (publicationCountByType[year][type] || 0) + 1;
+                publicationTypes.add(type);
+            });
+
+            years.sort((a, b) => a - b);
+
+            const datasets = [{
+                label: 'Total',
+                data: years.map(year => publicationCountByType[year].total),
+                borderColor: 'black',
+                fill: false,
+            }];
+
+            // Dynamically create datasets for each publication type
+            publicationTypes.forEach(type => {
+                datasets.push({
+                    label: type,
+                    data: years.map(year => publicationCountByType[year][type] || 0),
+                    borderColor: getRandomColor(),
+                    fill: false,
+                });
+            });
+
+            return {
+                labels: years,
+                datasets: datasets
+            };
+        }
+
+        // Function to generate random colors for different publication types
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        // Function to initialize the chart
+        async function initChart() {
+            const publications = await fetchData();
+            const chartData = prepareChartData(publications);
+
+            const ctx = document.getElementById('myChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: chartData,
+                options: {
+                    scales: {
+                        maintainAspectRatio: false,
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Year'
+                            },
+                            grid: {
+                                display: true,
+                                color: 'rgba(0, 0, 0, 0.3)',  // Grid line color
+                            },
+                            border: {
+                                display: true,
+                                color: 'black',  // Axis border color
+                                width: 2         // Axis border width
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Number of Publications'
+                            },
+                            ticks: {
+                                precision: 0, // Ensures only whole numbers are shown
+                                stepSize: 1  // Increment the y-axis by 1
+                            },
+                            grid: {
+                                display: true,
+                                color: 'rgba(0, 0, 0, 0.3)',  // Grid line color
+                            },
+                            border: {
+                                display: true,
+                                color: 'black',  // Axis border color
+                                width: 2         // Axis border width
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                boxWidth: 12,
+                            }
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                        }
+                    },
+                    interaction: {
+                        mode: 'nearest',
+                        axis: 'x',
+                        intersect: false
+                    }
+                }
+            });
+        }
+
+        // Call initChart to render the chart when the page loads
+        initChart();
+    </script>
+    <div id="footer"></div>
+
+
+    <script src="../js/loadContent.js"></script>
+</body>
+</html>

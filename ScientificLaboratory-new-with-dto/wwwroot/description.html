@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Management</title>
+    <link rel="stylesheet" href="css/description.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+</head>
+<body>
+    <div id="header"></div>
+    <h1 id="projectTitle" class="centered"></h1>
+
+    <div class="parent">
+        <div class="div1">
+            <h2 class="sectionTitle">Project Description</h2>
+            <div id="projectDescription"></div>
+        </div>
+        <div class="div2">
+            <h2 class="sectionTitle">Project Funding</h2>
+            <div id="fundingDetails"></div>
+            <table id="fundingTable">
+                <thead>
+                    <tr>
+                        <th>Year</th>
+                        <th>Amount (&euro;)</th>
+                    </tr>
+                </thead>
+                <tbody id="fundingTableBody"></tbody>
+            </table>
+            <p id="totalAmount"></p>
+        </div>
+        <div class="div3">
+            <canvas id="fundingPieChart"></canvas>
+        </div>
+    </div>
+    <div id="footer"></div>
+
+
+    <script src="js/loadContent.js"></script>
+    <script src="js/description.js"></script>
+
+</body>
+</html>

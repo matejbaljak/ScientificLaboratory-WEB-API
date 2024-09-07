@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Project</title>
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/updateProjects.css">
+</head>
+<body>
+    <div id="header"></div>
+
+    <div class="content">
+        <h1 id="form-title">Update Project</h1>
+        <div id="message"></div>
+
+        <form id="projectForm">
+            <input type="hidden" id="projectId">
+
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" required></textarea>
+
+            <label for="startMonth">Start Month:</label>
+            <input type="number" id="startMonth" name="startMonth" min="1" max="12" required>
+
+            <label for="startYear">Start Year:</label>
+            <input type="number" id="startYear" name="startYear" required>
+
+            <label for="endMonth">End Month:</label>
+            <input type="number" id="endMonth" name="endMonth" min="1" max="12" required>
+
+            <label for="endYear">End Year:</label>
+            <input type="number" id="endYear" name="endYear" required>
+
+            <label for="type">Type:</label>
+            <input type="text" id="type" name="type" required>
+
+            <!-- Project Leader Dropdown -->
+            <label for="projectLeader">Project Leader:</label>
+            <select id="projectLeader" name="projectLeader" required></select>
+
+            <h2>Researchers</h2>
+            <div id="researchersContainer">
+                <!-- Researchers will be added dynamically as dropdowns -->
+            </div>
+            <button type="button" class="add-researcher-button">Add Researcher</button>
+
+            <h2>Funding</h2>
+            <label for="fundingSource">Funding Source:</label>
+            <input type="text" id="fundingSource" name="fundingSource">
+
+            <label for="sponsorName">Sponsor Name:</label>
+            <input type="text" id="sponsorName" name="sponsorName">
+
+            <h2>Funding by Year</h2>
+            <div id="fundingYearsContainer">
+                <!-- Funding years will be added dynamically -->
+            </div>
+            <button type="button" class="add-funding-button">Add Funding Year</button>
+
+            <button type="submit" class="submit-button">Update Project</button>
+        </form>
+    </div>
+
+    <div id="footer"></div>
+
+    <script src="js/updateProject.js"></script>
+</body>
+</html>

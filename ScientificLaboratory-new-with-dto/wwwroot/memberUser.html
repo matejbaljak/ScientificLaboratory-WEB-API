@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/memberUser.css">
+    <title>Members Page</title>
+</head>
+<body>
+    <div id="header"></div>
+    <main>
+        <div class="members-container">
+            <div class="create-form-container" id="createFormContainer" style="display: none;">
+                <h3>Create New Member</h3>
+                <form id="createMemberForm">
+                    <div>
+                        <label for="createMemberName">Name:</label>
+                        <input type="text" id="createMemberName" required>
+                    </div>
+                    <div>
+                        <label for="createMemberPosition">Position:</label>
+                        <select id="createMemberPosition" required></select>
+                    </div>
+                    <div>
+                        <button type="submit">Create Member</button>
+                        <button type="button" id="cancelCreate">Cancel</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="members-list-container">
+                <button id="createMemberButton" class="createButton" style="display: none;">Create Member</button>
+                <h2>These are members of our team</h2>
+                <section id="laboratory-managers">
+                    <div class="section-title">Laboratory Managers</div>
+                    <ul class="members-list"></ul>
+                </section>
+                <section id="researchers" style="margin-top: 20px;">
+                    <div class="section-title">Researchers</div>
+                    <ul class="members-list"></ul>
+                </section>
+                <section id="external-associates" style="margin-top: 20px;">
+                    <div class="section-title">External Associates</div>
+                    <ul class="members-list"></ul>
+                </section>
+            </div>
+
+            <!-- Update form container -->
+            <div class="update-form-container" id="updateFormContainer" style="display: none;">
+                <h3>Update Member</h3>
+                <form id="updateMemberForm">
+                    <input type="hidden" id="updateMemberId">
+                    <div>
+                        <label for="updateMemberName">Name:</label>
+                        <input type="text" id="updateMemberName" required>
+                    </div>
+                    <div>
+                        <label for="updateMemberPosition">Position:</label>
+                        <select id="updateMemberPosition" required></select>
+                    </div>
+                    <div>
+                        <button type="submit">Save Changes</button>
+                        <button type="button" id="cancelUpdate">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    <div id="footer"></div>
+    <script src="js/loadContent.js"></script>
+    <script src="js/memberUser.js"></script>
+</body>
+</html>

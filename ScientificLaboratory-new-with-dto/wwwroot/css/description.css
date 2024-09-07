@@ -1,0 +1,127 @@
+﻿body {
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+
+.centered {
+    text-align: center;
+    margin-top: 20px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    word-wrap: break-word;
+}
+
+.parent {
+    width: 80%;
+    margin: 20px auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.div1, .div2, .div3 {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+    .div1:hover, .div2:hover, .div3:hover {
+        transform: scale(1.05);
+    }
+
+.sectionTitle {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#fundingPieChart {
+    max-width: 100%;
+    max-height: 300px;
+    transition: transform 0.3s;
+}
+
+    #fundingPieChart:hover {
+        transform: scale(1.1);
+    }
+
+table {
+    width: 60%;
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+#totalAmount {
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    .parent {
+        width: 90%;
+        padding: 10px;
+    }
+
+    .div1, .div2, .div3 {
+        padding: 15px;
+    }
+
+    table {
+        width: 90%;
+    }
+
+    #fundingPieChart {
+        max-height: 200px;
+    }
+
+    #projectTitle {
+        font-size: 1.5em; /* Adjust the title size for tablets */
+    }
+}
+
+@media (max-width: 480px) {
+    .parent {
+        width: 100%;
+        padding: 5px;
+    }
+
+    .div1, .div2, .div3 {
+        padding: 10px;
+    }
+
+    .centered {
+        width: 90%;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    #fundingPieChart {
+        max-height: 150px;
+    }
+
+    #projectTitle {
+        font-size: 1.2em; /* Adjust the title size for mobile devices */
+    }
+}

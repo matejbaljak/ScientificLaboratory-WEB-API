@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Quantum Research Laboratory</title>
+    <link rel="stylesheet" href="css/about.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <main>
+        <section id="overview">
+            <h2>Introduction</h2>
+            <p id="introText">Welcome to Scientific Laboratory, where innovation meets discovery. Our mission is to advance scientific knowledge through cutting-edge research and global collaboration, contributing to significant breakthroughs in the world of science.</p>
+            <p>We specialize in  many scientific areas including computer sciences, material sciences, and advanced robotics, pushing the boundaries of what's possible with science and technology.</p>
+            <button id="editIntroButton" class="admin-button" style="display:none;">Edit</button>
+        </section>
+
+        <section id="history">
+            <h2>History & Background</h2>
+            <p id="historyText">Founded in 1998, Scientific Laboratory has been a pioneer in scientific research for over two decades. Our journey began in a small facility, driven by a passion for discovery and innovation. Today, we are recognized globally for our contributions to scientific research.</p>
+            <p>Key milestones include:</p>
+            <ul>
+                <li>1999: Established our first major research program.</li>
+                <li>2005: Partnered with different organisations to develop new computer science innovations.</li>
+                <li>2012: Published a groundbreaking publications in many scientific areas.</li>
+            </ul>
+            <button id="editHistoryButton" class="admin-button" style="display:none;">Edit</button>
+        </section>
+
+        <section id="team">
+            <h2>Our Team</h2>
+            <p id="teamText">Our research team at Scientific Laboratory is composed of dedicated scientists, engineers, and researchers from diverse backgrounds, all united by a shared passion for discovery and innovation. Our team is at the forefront of groundbreaking research that pushes the boundaries of scientific knowledge.</p>
+            <p>We foster a collaborative environment where multidisciplinary teams work together to solve complex scientific challenges. Our researchers are continuously contributing to the scientific community through publications, conference presentations, and collaborative projects with leading institutions worldwide.</p>
+            <p>Our team is supported by state-of-the-art facilities and cutting-edge technology, enabling us to conduct high-impact research and achieve significant breakthroughs.</p>
+            <button id="editTeamButton" class="admin-button" style="display:none;">Edit</button>
+        </section>
+
+        <section id="collaborations">
+            <h2>Collaborations & Partnerships</h2>
+            <p>We believe in the power of collaboration. Our lab works closely with prestigious institutions such as MIT, Stanford, and CERN. These collaborations have resulted in successful many projects and gave us great result.</p>
+            <p>These partnerships have expanded our research capabilities, bringing new insights into many scientific fields.</p>
+            <p id="collaborationsText">We believe in the power of collaboration. Our lab works closely with prestigious institutions such as MIT, Stanford, and CERN. These collaborations have resulted in successful projects and advanced scientific progress.</p>
+            <button id="editCollaborationsButton" class="admin-button" style="display:none;">Edit</button>
+        </section>
+
+        <section id="values">
+            <h2>Values & Ethics</h2>
+            <p id="valuesText">At Scientific Laboratory, we are guided by a commitment to excellence, integrity, and collaboration. We adhere to strict ethical standards in all our research, ensuring that our work not only advances science but does so responsibly. We prioritize open science, data transparency, and the well-being of our research subjects and participants.</p>
+            <button id="editValuesButton" class="admin-button" style="display:none;">Edit</button>
+        </section>
+
+        <section id="facilities">
+            <h2>Facilities & Resources</h2>
+            <p id="facilitiesText">Our lab is equipped with state-of-the-art facilities, including many new technologies. These resources enable us to conduct pioneering research and stay at the forefront of scientific discovery.</p>
+            <p>We are grateful for the support from the National Science Foundation, DARPA, and the European Research Council, which have been instrumental in advancing our research.</p>
+            <button id="editFacilitiesButton" class="admin-button" style="display:none;">Edit</button>
+        </section>
+
+    </main>
+
+    <div id="footer"></div>
+
+
+    <div id="editModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h3>Edit Content</h3>
+            <textarea id="editArea" rows="10" cols="50"></textarea>
+            <br>
+            <button id="saveButton" class="admin-button">Save</button>
+            <button id="cancelButton" class="admin-button">Cancel</button>
+        </div>
+    </div>
+
+    <script src="js/aboutAdmin.js"></script> <!-- Admin functionalities -->
+    <script src="js/loadContent.js"></script> <!-- Admin functionalities -->
+
+</body>
+
+</html>

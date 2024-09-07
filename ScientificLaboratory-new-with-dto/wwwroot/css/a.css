@@ -1,0 +1,274 @@
+﻿/* General body styling for a modern look */
+body {
+    font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s ease; /* Smooth transition for background color on hover */
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* Page title styling */
+.page-title {
+    text-align: center;
+    font-size: 2.5em;
+    font-weight: bold;
+    margin: 20px 0;
+    color: #333;
+    transition: color 0.3s ease; /* Smooth transition for text color on hover */
+        overflow-x: hidden; /* Prevent horizontal scrolling */
+
+}
+
+/* Centering and styling the publications container */
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 80vh;
+    padding: 20px;
+}
+
+.projects {
+    width: 100%;
+    max-width: 960px;
+    margin: 20px auto;
+    padding: 15px 25px;
+    box-sizing: border-box;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 12px; /* Rounded corners for the container */
+    overflow: hidden; /* Ensures that children do not overflow */
+    margin-bottom: 40px;
+}
+
+/* Styling the table */
+table.publication-table {
+    width: 100%;
+    border-collapse: collapse; /* Collapse borders to handle custom border styles */
+    margin: 20px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Styling the header cells */
+th {
+    background-color: #007bff;
+    color: #ffffff;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-bottom: 3px solid #ccc;
+    padding: 12px 18px; /* Increased padding for header cells */
+}
+
+    /* Apply border-radius to first and last header cells manually */
+    th:first-child {
+        border-top-left-radius: 8px;
+    }
+
+    th:last-child {
+        border-top-right-radius: 8px;
+    }
+
+/* Table data cells styling */
+td {
+    padding: 12px 18px; /* Increased padding for data cells */
+    text-align: left;
+}
+
+    /* Smaller line between data and button */
+    td.button-cell {
+        border-left: 1px solid #bbb;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+/* Alternating row colors */
+tr:nth-child(odd) {
+    background-color: #ffffff; /* White background */
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2; /* Light grey background */
+}
+
+/* Hover effect for rows */
+tr:hover {
+    background-color: #e0e0e0; /* Darker grey on hover */
+    cursor: pointer;
+    transform: scale(1.02); /* Slightly enlarge the row on hover */
+    transition: all 0.2s ease; /* Smooth transition for hover effects */
+}
+
+/* Button styling within the table */
+.viewDetailsButton, .info-button {
+    padding: 10px 20px;
+    background-color: rgb(49, 163, 221);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for background and scaling */
+
+    max-width: 100%; /* Ensure no element exceeds the viewport width */
+    overflow: hidden; /* Prevent overflow */
+}
+
+    .viewDetailsButton:hover {
+        background-color: #286ee2;
+        transform: scale(1.05);
+    }
+
+    .viewDetailsButton:focus {
+        outline: none;
+    }
+
+/* Search container styling */
+.search-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    width: 100%;
+    max-width: 600px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#searchInput {
+    width: 100%; /* Adjust width as necessary */
+    padding: 15px;
+    border: 2px solid #ccc;
+    border-right: none; /* Removes the border on the right to blend with the button */
+    font-size: 16px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+#searchButton {
+    padding: 15px;
+    background: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+    #searchButton:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+    }
+
+/* Optional: Enhances usability by allowing enter key to trigger search */
+#searchInput:focus {
+    outline: none;
+    border-color: #007BFF;
+}
+
+/* Add more interactive hover styles for the page */
+body:hover {
+    background-color: #e9ecef; /* Slightly lighter background color on hover */
+}
+
+.page-title:hover {
+    color: #0056b3; /* Change title color on hover */
+}
+
+/* Media queries for responsiveness */
+
+/* Tablets (landscape and portrait) */
+@media (max-width: 1024px) {
+    .search-container {
+        width: 90%;
+    }
+
+    .projects {
+        padding: 10px 15px;
+    }
+
+    th, td {
+        padding: 10px 15px; /* Adjusted for smaller screens */
+    }
+
+    .viewDetailsButton, .info-button {
+        padding: 8px 16px;
+        font-size: 0.9em;
+    }
+
+    #searchInput, #searchButton {
+        font-size: 14px;
+        max-width: 100%; /* Ensure no element exceeds the viewport width */
+        overflow: hidden; /* Prevent overflow */
+    }
+}
+
+/* Mobile phones (landscape and portrait) */
+@media (max-width: 768px) {
+    .search-container {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+    }
+
+    #searchInput, #searchButton {
+        font-size: 14px;
+        padding: 10px; /* Smaller padding on mobile devices */
+        width: 100%;
+        margin: 5px 0;
+        border-radius: 8px; /* Unified border radius for buttons on mobile */
+        max-width: 100%; /* Ensure no element exceeds the viewport width */
+        overflow: hidden; /* Prevent overflow */
+    }
+
+    .projects {
+        padding: 5px 10px;
+    }
+
+    th, td {
+        padding: 8px 10px; /* Further adjusted for mobile screens */
+    }
+
+    .viewDetailsButton, .info-button {
+        padding: 6px 12px;
+        font-size: 0.8em;
+    }
+}
+
+/* Extra small devices (less than 576px) */
+@media (max-width: 576px) {
+    .search-container {
+        width: 100%;
+    }
+
+    #searchInput, #searchButton {
+        font-size: 12px;
+        padding: 8px; /* Further reduced padding */
+        max-width: 100%; /* Ensure no element exceeds the viewport width */
+        overflow: hidden; /* Prevent overflow */
+    }
+
+    .projects {
+        padding: 5px 8px;
+    }
+
+    th, td {
+        padding: 6px 8px; /* Further adjusted for very small screens */
+    }
+
+    .viewDetailsButton, .info-button {
+        padding: 5px 10px;
+        font-size: 0.7em;
+    }
+}

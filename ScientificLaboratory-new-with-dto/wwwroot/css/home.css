@@ -1,0 +1,201 @@
+﻿/* Ensure the body and HTML do not allow overflow */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    box-sizing: border-box; /* Ensure padding and borders are included within the width and height */
+}
+
+*, *::before, *::after {
+    box-sizing: inherit; /* Apply box-sizing to all elements */
+}
+
+.main-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    flex-wrap: wrap; /* Ensure content wraps on smaller screens */
+    width: 100%; /* Ensure sections take full width */
+}
+
+.image-section {
+    flex: 1;
+    padding: 20px;
+}
+
+    .image-section img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+        .image-section img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+.text-section {
+    flex: 1;
+    padding: 20px;
+}
+
+    .text-section h2 {
+        font-size: 28px;
+        color: rgb(49, 163, 221);
+        margin-bottom: 20px;
+    }
+
+    .text-section p {
+        font-size: 20px;
+        line-height: 1.8;
+        color: #333;
+    }
+
+.services-list {
+    list-style: none;
+    padding: 0;
+}
+
+    .services-list li {
+        font-size: 18px;
+        color: #555;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+    }
+
+        .services-list li i {
+            font-size: 24px;
+            color: rgb(49, 163, 221);
+            margin-right: 10px;
+        }
+
+/* New styles for Projects, Publications, Members, and Statistics */
+
+/* Projects Section */
+#projects .image-section {
+    order: 1;
+}
+
+#projects .text-section {
+    order: 2;
+    text-align: left;
+}
+
+#projects .image-section img {
+    border-radius: 8px;
+}
+
+/* Publications Section */
+#publications .text-section {
+    order: 1;
+    text-align: left;
+}
+
+#publications .image-section {
+    order: 2;
+}
+
+    #publications .image-section img {
+        border-radius: 8px;
+    }
+
+/* Members Section */
+#members .image-section {
+    order: 1;
+}
+
+#members .text-section {
+    order: 2;
+    text-align: left;
+}
+
+#members .image-section img {
+    border-radius: 8px;
+}
+
+/* Statistics Section */
+#statistics .text-section {
+    order: 1;
+    text-align: left;
+}
+
+#statistics .image-section {
+    order: 2;
+}
+
+    #statistics .image-section img {
+        border-radius: 8px;
+    }
+
+/* General read-more button styling for all sections */
+.read-more-button {
+    padding: 10px 20px;
+    background-color: rgb(49, 163, 221);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+    .read-more-button:hover {
+        background-color: rgb(39, 133, 180);
+    }
+
+/* Responsive adjustments for better mobile layout */
+@media (max-width: 767px) {
+    section {
+        flex-direction: column; /* Stack elements vertically */
+        text-align: center; /* Center text for better readability */
+        padding: 0 10px; /* Prevent horizontal overflow by adding padding */
+    }
+
+    .image-section, .text-section {
+        flex: 1 1 100%; /* Ensure each section takes up full width */
+        padding: 10px; /* Reduce padding for better use of space */
+    }
+
+        .text-section h2 {
+            font-size: 24px; /* Adjust heading size for mobile */
+        }
+
+        .text-section p {
+            font-size: 16px; /* Adjust paragraph font size for mobile */
+        }
+
+    .services-list li {
+        font-size: 16px; /* Adjust list font size for mobile */
+    }
+
+    .read-more-button {
+        padding: 8px 16px; /* Adjust button padding on mobile */
+    }
+
+    .image-section img {
+        max-width: 100%; /* Make images larger while fitting the screen */
+        height: auto; /* Maintain aspect ratio */
+        margin: 0 auto; /* Center the images */
+    }
+
+    .main-content {
+        padding: 10px; /* Reduce padding on mobile */
+    }
+}

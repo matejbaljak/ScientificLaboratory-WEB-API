@@ -1,0 +1,22 @@
+﻿form {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+button {
+    margin-top: 10px;
+}
+
+#fundingsList {
+    margin-top: 20px;
+}
+
+.funding {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}

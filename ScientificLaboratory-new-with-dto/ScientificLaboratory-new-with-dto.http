@@ -1,0 +1,6 @@
+@ScientificLaboratory_new_with_dto_HostAddress = http://localhost:5108
+
+GET {{ScientificLaboratory_new_with_dto_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

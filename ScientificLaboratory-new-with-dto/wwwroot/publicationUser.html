@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publications</title>
+    <link rel="stylesheet" href="css/a.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/publicationAdmin.css">
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <div id="content" class="content">
+        <h1 class="page-title">Publications</h1>
+
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search publications...">
+            <button id="searchButton"><i class="fa fa-search"></i></button>
+        </div>
+        <!-- Create Publication Button -->
+        <button id="createPublicationButton" style="display: none;">Create Publication</button>
+        <div id="publications" class="projects"></div>
+    </div>
+
+    <div id="footer"></div>
+
+    <script src="js/loadContent.js"></script>
+    <script src="js/publicationUser.js"></script>
+    <script>
+        // If the function is here, make sure it's defined before any elements try to access it
+        function searchTable() {
+            let input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase(); // Convert input to uppercase for case-insensitive comparison
+            table = document.querySelector(".publication-table");
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

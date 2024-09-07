@@ -1,0 +1,326 @@
+﻿body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+header, footer {
+    background-color: #4a90e2;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+main {
+    display: flex;
+    justify-content: center; /* Center the content horizontally */
+    align-items: center;
+    flex-grow: 1;
+    padding: 40px;
+}
+
+.members-container {
+    width: 650px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    padding: 20px 50px;
+    padding-bottom: 50px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.section-title {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #4a90e2;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+}
+
+.members-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.members-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.members-list li:hover {
+    background-color: #e9ecef;
+    padding: 15px;
+}
+
+/* Ensure the list text is properly aligned */
+.members-list li p {
+    flex-grow: 1;
+    margin: 0;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px; /* Adjust gap between buttons */
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .members-container {
+        width: 100%; /* Make the container take up full width on smaller screens */
+        padding: 20px; /* Adjust padding */
+    }
+
+    .section-title {
+        font-size: 1.3em; /* Slightly reduce font size */
+        margin-bottom: 10px; /* Adjust margin */
+    }
+
+    .members-list li {
+        margin-bottom: 8px; /* Adjust margins */
+        padding: 8px; /* Adjust padding */
+    }
+
+    .members-list li:hover {
+        padding: 10px; /* Adjust padding on hover */
+    }
+}
+
+@media (max-width: 480px) {
+    .members-container {
+        padding: 15px; /* Further reduce padding */
+    }
+
+    .section-title {
+        font-size: 1.2em; /* Further reduce font size */
+        margin-bottom: 8px; /* Adjust margin */
+    }
+
+    .members-list li {
+        margin-bottom: 6px; /* Adjust margins */
+        padding: 6px; /* Adjust padding */
+    }
+
+    .members-list li:hover {
+        padding: 8px; /* Adjust padding on hover */
+    }
+}
+
+/* General button styling */
+button {
+    padding: 5px 10px;
+    margin-top: 5px;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Specific styles for the Create button */
+#createMemberButton {
+    background-color: #28a745 !important; /* Strong Green */
+    color: white; /* Ensure text color is white */
+}
+
+#createMemberButton:hover {
+    background-color: #218838 !important; /* Darker Green */
+}
+
+/* Update button (yellow shades) */
+.updateButton {
+    background-color: #ffc107; /* Yellow */
+    color: black; /* Adjust text color for visibility */
+}
+
+.updateButton:hover {
+    background-color: #e0a800; /* Darker yellow */
+}
+
+/* Delete button (red shades) */
+.deleteButton {
+    background-color: #dc3545; /* Red */
+}
+
+.deleteButton:hover {
+    background-color: #c82333; /* Darker red */
+}
+
+/* Update Form Container */
+#updateFormContainer {
+    background-color: #f9f9f9; /* Light grey background */
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+#updateFormContainer h3 {
+    margin-top: 0;
+    color: #333;
+}
+
+#updateMemberForm label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+#updateMemberForm input,
+#updateMemberForm select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#updateMemberForm button[type="submit"] {
+    background-color: #4CAF50; /* Green submit button */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+#updateMemberForm button[type="submit"]:hover {
+    background-color: #45A049; /* Darker green on hover */
+}
+
+#cancelUpdate {
+    background-color: #9e9e9e; /* Grey cancel button */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+}
+
+#cancelUpdate:hover {
+    background-color: #757575; /* Darker grey on hover */
+}
+
+/* Create Form Container */
+.create-form-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #ddd;
+}
+
+.create-form-container h3 {
+    margin-top: 0;
+}
+
+.create-form-container form div {
+    margin-bottom: 10px;
+}
+
+.create-form-container button {
+    margin-right: 10px;
+}
+
+/* Update Form Container */
+.update-form-container {
+    padding: 20px;
+    border-left: 1px solid #ddd;
+    background-color: #f9f9f9;
+}
+
+.update-form-container h3 {
+    margin-top: 0;
+}
+
+.update-form-container form div {
+    margin-bottom: 10px;
+}
+
+.update-form-container button {
+    margin-right: 10px;
+}
+
+.createButton {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    padding: 10px 20px;
+    margin: 10px 0;
+    border: none;
+    cursor: pointer;
+}
+
+.createButton:hover {
+    background-color: #45a049;
+}
+
+button[type="submit"] {
+    background-color: #008CBA; /* Blue */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #007bb5;
+}
+
+#cancelCreate {
+    background-color: #f44336; /* Red */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+#cancelCreate:hover {
+    background-color: #da190b;
+}
+
+/* Increase the size of input fields */
+input[type="text"],
+select {
+    width: 100%; /* Make the input fields take up the full width of the container */
+    padding: 12px 20px; /* Increase padding for larger clickable area */
+    margin: 8px 0; /* Add some margin for spacing */
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1.2em; /* Increase font size */
+}
+
+/* Additional styles for the container to align with larger inputs */
+.create-form-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #ddd;
+}
+
+    .create-form-container h3 {
+        margin-top: 0;
+    }
+
+    .create-form-container form div {
+        margin-bottom: 20px; /* Increase margin-bottom for better spacing */
+    }

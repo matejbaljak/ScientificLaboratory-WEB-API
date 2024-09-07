@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create and Update Fundings</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/fundings.css">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+    <h1>Create and Update Fundings</h1>
+    <h2>Create Funding</h2>
+    <form id="createFundingForm">
+        <label for="source">Source:</label>
+        <input type="text" id="source" name="source" required><br><br>
+        <label for="sponsorName">Sponsor Name:</label>
+        <input type="text" id="sponsorName" name="sponsorName" required><br><br>
+        <label for="fundingYears">Funding Years:</label>
+        <textarea id="fundingYears" name="fundingYears" placeholder="Year:Amount, e.g., 2024:10000" required></textarea><br><br>
+        <button type="submit">Create Funding</button>
+    </form>
+
+    <h2>Update Funding</h2>
+    <form id="updateFundingForm">
+        <label for="updateId">Funding ID:</label>
+        <input type="text" id="updateId" name="updateId" required><br><br>
+        <label for="updateSource">Source:</label>
+        <input type="text" id="updateSource" name="updateSource"><br><br>
+        <label for="updateSponsorName">Sponsor Name:</label>
+        <input type="text" id="updateSponsorName" name="updateSponsorName"><br><br>
+        <label for="updateFundingYears">Funding Years:</label>
+        <textarea id="updateFundingYears" name="updateFundingYears" placeholder="Year:Amount, e.g., 2024:10000"></textarea><br><br>
+        <button type="submit">Update Funding</button>
+    </form>
+
+    <script src="js/scripts.js"></script>
+    <script src="js/header.js"></script>
+    <script src="js/fundings.js"></script>
+</body>
+</html>
